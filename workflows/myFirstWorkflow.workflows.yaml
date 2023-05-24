@@ -3,7 +3,7 @@
 # This workflow passes the region where the workflow is deployed
 # to the Wikipedia API and returns a list of related Wikipedia articles.
 # A region is retrieved from the GOOGLE_CLOUD_LOCATION system variable
-# unless you input your own search term; for example, {"searchTerm": "india"}.
+# unless you input your own search term; for example, {"searchTerm": "asia"}.
 main:
     params: [input]
     steps:
