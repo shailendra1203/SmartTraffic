@@ -1,0 +1,25 @@
+name: Deploy Cloud Workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy Cloud Workflow
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: extended-study-387006
+        service_account_key: b0398e7181cdc693ee206d0fe85ffaaa24305ee0
+        export_default_credentials: true
+    - name: Use gcloud CLI
+      run: |
+        gcloud workflows deploy myWorkflowFromGitHub \
+        --location us-central1 \
+        --source myFirstWorkflow.workflows.yaml \
+        --project extended-study-387006 \
+        --labels "commit-sha=${{ github.sha }}" \
+        --service-account workflow-service-account@extended-study-387006.iam.gserviceaccount.com
